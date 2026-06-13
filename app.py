@@ -110,12 +110,14 @@ with col2:
         fig = go.Figure(go.Pie(
             labels=fuel_cnt["Fuel"], 
             values=fuel_cnt["Count"], 
-            hole=0.45
+            hole=0.45,
+            textinfo='percent'
         ))
         
         fig.update_layout(
-            title={"text": "Fuel Type Distribution", "x": 0.5, "xanchor": "center"},
-            showlegend=True
+            annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
+            showlegend=True,
+            legend=dict(orientation="v", x=1, y=0.5)
         )
         
         st.plotly_chart(apply_theme(fig), use_container_width=True)

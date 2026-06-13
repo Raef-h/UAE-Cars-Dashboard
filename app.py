@@ -116,13 +116,12 @@ with col2:
     fuel_cnt.columns = ["Fuel", "Count"]
     
     fig = px.pie(fuel_cnt, values="Count", names="Fuel", hole=0.45)
-    
     fig.update_layout(
         annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
         showlegend=True,
         title=None 
     )
-    st.plotly_chart(apply_theme(fig), use_container_width=True)
+    st.plotly_chart(apply_theme(fig), use_container_width=True, key="fuel_pie_chart")
     
 st.markdown('<div class="section-header">Year Trends & Top Brands</div>', unsafe_allow_html=True)
 col3, col4 = st.columns(2)

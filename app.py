@@ -106,7 +106,18 @@ with col2:
     if "Fuel Type" in df.columns:
         fuel_cnt = df["Fuel Type"].value_counts().reset_index()
         fuel_cnt.columns = ["Fuel", "Count"]
-        fig = go.Figure(go.Pie(labels=fuel_cnt["Fuel"], values=fuel_cnt["Count"], hole=0.45, title="Fuel Type"))
+        
+        fig = go.Figure(go.Pie(
+            labels=fuel_cnt["Fuel"], 
+            values=fuel_cnt["Count"], 
+            hole=0.45
+        ))
+        
+        fig.update_layout(
+            title={"text": "Fuel Type Distribution", "x": 0.5, "xanchor": "center"},
+            showlegend=True
+        )
+        
         st.plotly_chart(apply_theme(fig), use_container_width=True)
 
 st.markdown('<div class="section-header">Year Trends & Top Brands</div>', unsafe_allow_html=True)

@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="UAE Used Cars Dashboard",
     page_icon="🚗",
     layout="wide",
-    initial_sidebar_state="expanded",Price Trends Over Time,
+    initial_sidebar_state="expanded",
 )
 
 st.markdown("""

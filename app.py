@@ -107,28 +107,23 @@ with col1:
         fig = px.bar(city_cnt, x="Count", y="City", orientation="h", color="Count", color_continuous_scale=["#1a3a5c", "#c9a84c"], title="Cars per City")
         fig.update_layout(yaxis=dict(autorange="reversed"), coloraxis_showscale=False)
         st.plotly_chart(apply_theme(fig), use_container_width=True)
+df = df[df["Fuel Type"].notna()] 
+df = df[df["Fuel Type"] != "undefined"] 
+df = df[df["Fuel Type"] != "nan"]
+
 with col2:
-    if "Fuel Type" in df.columns:
-        fuel_cnt = df["Fuel Type"].value_counts().reset_index()
-        fuel_cnt.columns = ["Fuel", "Count"]
-        
-        fig = go.Figure(go.Pie(
-            labels=fuel_cnt["Fuel"], 
-            values=fuel_cnt["Count"], 
-            hole=0.45
-        ))
-        
-        fig = apply_theme(fig)
-        
-        
-        fig.update_layout(
-            title=None,  
-            annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
-            showlegend=True,
-            legend=dict(orientation="v", x=1.05, y=0.5) 
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
+    fuel_cnt = df["Fuel Type"].value_counts().reset_index()
+    fuel_cnt.columns = ["Fuel", "Count"]
+    
+    fig = px.pie(fuel_cnt, values="Count", names="Fuel", hole=0.45)
+    
+    fig.update_layout(
+        annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
+        showlegend=True,
+        title=None 
+    )
+    st.plotly_chart(apply_theme(fig), use_container_width=True)
+    
 st.markdown('<div class="section-header">Year Trends & Top Brands</div>', unsafe_allow_html=True)
 col3, col4 = st.columns(2)
 with col3:

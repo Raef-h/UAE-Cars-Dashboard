@@ -109,19 +109,18 @@ with col1:
         st.plotly_chart(apply_theme(fig), use_container_width=True)
 
 with col2:
-    if "Fuel Type" in df.columns:
-        fuel_cnt = df["Fuel Type"].value_counts().reset_index()
-        fuel_cnt.columns = ["Fuel", "Count"]
-        
-        fig = go.Figure(go.Pie(labels=fuel_cnt["Fuel"], values=fuel_cnt["Count"], hole=0.45))
-        
-        fig.update_layout(
-            title=None, 
-            annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
-            showlegend=True
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
+    fuel_cnt = df["Fuel Type"].value_counts().reset_index()
+    fuel_cnt.columns = ["Fuel", "Count"]
+    
+    fig = px.pie(fuel_cnt, values="Count", names="Fuel", hole=0.45)
+    
+    # لا تضع title هنا، لكي لا تظهر الكلمة
+    fig.update_layout(
+        annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
+        showlegend=True,
+        title= ظهور أي عنوان
+    )
+    st.plotly_chart(apply_theme(fig), use_container_width=True)
         
 col3, col4 = st.columns(2)
 with col3:

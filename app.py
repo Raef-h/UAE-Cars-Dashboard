@@ -200,12 +200,11 @@ def fmt_price(v):
     if v >= 1_000: return f"{v/1_000:.1f}K"
     return str(int(v))
 
-def apply_theme(fig):
-    fig.update_layout(**PLOT_THEME)
+def apply_theme(fig, title_text=""):
+    fig.update_layout(**PLOT_THEME, title_text=title_text, title_x=0.5)
     fig.update_xaxes(**AXIS_STYLE)
     fig.update_yaxes(**AXIS_STYLE)
     return fig
-
 st.markdown('<div class="page-title">UAE Used Cars</div>'
             '<div class="page-subtitle">Market Intelligence Dashboard · Filtered View</div>',
             unsafe_allow_html=True)

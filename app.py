@@ -107,17 +107,14 @@ with col2:
         fuel_cnt = df["Fuel Type"].value_counts().reset_index()
         fuel_cnt.columns = ["Fuel", "Count"]
         
-        fig = go.Figure(go.Pie(
-            labels=fuel_cnt["Fuel"], 
-            values=fuel_cnt["Count"], 
-            hole=0.45,
-            textinfo='percent'
-        ))
+        # إنشاء الرسمة
+        fig = go.Figure(go.Pie(labels=fuel_cnt["Fuel"], values=fuel_cnt["Count"], hole=0.45))
         
+        # نستخدم تحديث التخطيط لإزالة أي عنوان، ونضيف العنوان كـ Annotation داخل الدائرة ليكون احترافياً
         fig.update_layout(
+            title_text="", # إفراغ العنوان الخارجي تماماً لحذف "undefined"
             annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
-            showlegend=True,
-            legend=dict(orientation="v", x=1, y=0.5)
+            showlegend=True
         )
         
         st.plotly_chart(apply_theme(fig), use_container_width=True)

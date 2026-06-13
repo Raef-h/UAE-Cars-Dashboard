@@ -118,13 +118,17 @@ with col2:
             hole=0.45
         ))
         
+        fig = apply_theme(fig)
+        
+        
         fig.update_layout(
+            title=None,  
             annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
-            showlegend=True
+            showlegend=True,
+            legend=dict(orientation="v", x=1.05, y=0.5) 
         )
         
-        st.plotly_chart(apply_theme(fig), use_container_width=True)
-
+        st.plotly_chart(fig, use_container_width=True)
 st.markdown('<div class="section-header">Year Trends & Top Brands</div>', unsafe_allow_html=True)
 col3, col4 = st.columns(2)
 with col3:

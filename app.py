@@ -114,11 +114,10 @@ with col2:
     
     fig = px.pie(fuel_cnt, values="Count", names="Fuel", hole=0.45)
     
-    # لا تضع title هنا، لكي لا تظهر الكلمة
     fig.update_layout(
         annotations=[dict(text='Fuel<br>Type', x=0.5, y=0.5, font_size=15, showarrow=False)],
         showlegend=True,
-        title="RAeg" 
+        title="Fuel Type Distribution" 
     )
     st.plotly_chart(apply_theme(fig), use_container_width=True)
         

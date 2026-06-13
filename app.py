@@ -168,8 +168,7 @@ with st.sidebar:
 
     with st.spinner("Loading data..."):
         df_raw = load_data()
-        st.success(f"✅ {len(df_raw):,} records loaded")
-
+        
     st.markdown("## Filters")
     years = sorted(df_raw["Year"].dropna().unique().astype(int))
     year_range = st.slider("📅 Year Range", min_value=min(years), max_value=max(years),

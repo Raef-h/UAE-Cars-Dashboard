@@ -134,7 +134,7 @@ with col5:
 with col6:
     fig = px.histogram(df[df["Price"] < df["Price"].quantile(0.98)], x="Price", title="Price Distribution")
     st.plotly_chart(apply_theme(fig), use_container_width=True)
-  st.markdown('<div class="section-header">Models, Transmission & Color</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Models, Transmission & Color</div>', unsafe_allow_html=True)
 col7, col8, col9 = st.columns(3)
 with col7:
     if "Model" in df.columns:

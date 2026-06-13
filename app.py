@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="UAE Used Cars Dashboard",
     page_icon="🚗",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="expanded",Price Trends Over Time
 )
 
 st.markdown("""
@@ -301,10 +301,14 @@ with col10:
     fig = go.Figure(go.Scatter(x=avg_p["Year"], y=avg_p["Price"], mode="lines+markers", fill="tozeroy"))
     st.plotly_chart(apply_theme(fig), use_container_width=True)
 with col11:
-    if "Fuel Type" in df.columns:
-        fig = px.box(df[df["Price"] < df["Price"].quantile(0.97)], x="Fuel Type", y="Price", color="Fuel Type")
-        st.plotly_chart(apply_theme(fig), use_container_width=True)
-
+if "Fuel Type" in df.columns:
+    fig = px.box(df[df["Price"] < df["Price"].quantile(0.97)], 
+                 x="Fuel Type", y="Price", color="Fuel Type",
+                 color_discrete_map={"Gasoline": "#c9a84c", "Diesel": "#3a7fc1", 
+                                     "Electric": "#2ecc71", "Hybrid": "#e74c3c"},
+                 title="Price Range by Fuel Type")
+    fig.update_layout(showlegend=True) 
+    st.plotly_chart(apply_theme(fig), use_container_width=True)
 st.markdown('<div class="section-header">Predictive Analytics (ML Forecast)</div>', unsafe_allow_html=True)
 col12, col13 = st.columns(2)
 with col12:

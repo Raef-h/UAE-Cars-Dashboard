@@ -239,7 +239,9 @@ with col1:
     if "Location" in df.columns:
         city_cnt = df["Location"].value_counts().head(15).reset_index()
         city_cnt.columns = ["City", "Count"]
-        fig = px.bar(city_cnt, x="Count", y="City", orientation="h", color="Count", color_continuous_scale=["#1a3a5c", "#c9a84c"])
+        fig = px.bar(city_cnt, x="Count", y="City", orientation="h", color="Count", 
+             color_continuous_scale=["#1a3a5c", "#c9a84c"],
+             title="Cars per City (Top 15)")
         fig.update_layout(yaxis=dict(autorange="reversed"), coloraxis_showscale=False)
         st.plotly_chart(apply_theme(fig), use_container_width=True)
 with col2:

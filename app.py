@@ -74,7 +74,11 @@ def fmt_price(v):
 
 def apply_theme(fig):
     fig.update_layout(**PLOT_THEME)
-    fig.update_layout(title_text="") 
+    if fig.layout.title.text:
+        fig.update_layout(title_x=0.5)
+    else:
+        fig.update_layout(title=None)
+        
     fig.update_xaxes(**AXIS_STYLE)
     fig.update_yaxes(**AXIS_STYLE)
     return fig
